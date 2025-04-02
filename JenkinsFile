@@ -1,8 +1,21 @@
 pipeline {
     agent any
     stages {
-        stage ('teste') {
-            bat 'echo deu certo'
+        stage ('inicio') {
+            steps {
+                bat 'echo inicio'
+            }
+        }
+        stage ('meio') {
+            steps {
+                bat 'echo meio'
+            }
+        }
+        stage ('fim') {
+            steps {
+                sleep(5)
+                bat 'echo fim'
+            }
         }
     }
 }
