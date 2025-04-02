@@ -1,14 +1,15 @@
 pipeline {
     agent any
     stages {
-        stage ('Build Backend') {
+        stage('Build Backend') {
             steps {
                 bat 'mvn clean package -DskipTests=true'
             }
         }
-        stage ('Sonar Analysis') {
-            environment{
+        stage('Sonar Analysis') {
+            environment {
                 scannerHome = tool 'SONAR_SCANNER'
+                SONAR_SCANNER_OPTS = '--add-opens java.base/java.lang=ALL-UNNAMED'
             }
             steps {
                 withSonarQubeEnv('SONAR_LOCAL') {
@@ -16,7 +17,7 @@ pipeline {
                 }
             }
         }
-        stage ('fim') {
+        stage('fim') {
             steps {
                 sleep(5)
                 bat 'echo fim'
