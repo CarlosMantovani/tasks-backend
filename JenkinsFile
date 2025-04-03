@@ -20,7 +20,7 @@ pipeline {
         }
         stage('Quality Gate') {
             steps {
-                sleep(40)
+                sleep(35)
                 timeout(time: 1, unit: 'MINUTES') {
                     waitForQualityGate abortPipeline: true
                 }
@@ -43,7 +43,7 @@ pipeline {
         stage('Deploy Prod') {
             steps {
                 bat 'docker-compose build'
-                bat 'docker-compose up'
+                bat 'docker-compose up -d'
             }
         }
     }
